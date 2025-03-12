@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Occupancy Visualization")),
+        appBar: AppBar(title: Text("Occupancy noora")),
         body: Center(
           child:
               occupancyData == null

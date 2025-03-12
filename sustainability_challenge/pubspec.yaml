@@ -73,10 +73,9 @@ flutter:
      - assets/data_eth/plugs/06_plugs_csv/
      - assets/data_eth/sm/01_sm_csv/
      - assets/data_eth/sm/02_sm_csv/
-     - assets/data_eth/sm/03_sm_csv/
-     - assets/data_eth/sm/04_sm_csv/
-     - assets/data_eth/sm/05_sm_csv/
-     - assets/data_eth/sm/06_sm_csv/
+#     - assets/data_eth/sm/04_sm_csv/
+#     - assets/data_eth/sm/05_sm_csv/
+#    - assets/data_eth/sm/06_sm_csv/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
