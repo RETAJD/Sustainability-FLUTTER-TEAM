@@ -12,16 +12,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<double>? occupancyData;
+  List<double>? summerData;
+  List<double>? winterData;
 
   @override
   void initState() {
     super.initState();
-    loadOccupancyData(
-      "assets/data_eth/occupancy/01_occupancy_csv/01_summer.csv",
-    ).then((data) {
+
+    // Loading data
+    Future.wait([
+      load15MinAveragedData(
+        "assets/data_eth/occupancy/01_occupancy_csv/01_summer.csv",
+      ),
+      load15MinAveragedData(
+        "assets/data_eth/occupancy/01_occupancy_csv/01_winter.csv",
+      ),
+    ]).then((data) {
       setState(() {
-        occupancyData = data;
+        summerData = data[0]; // Dane letnie
+        winterData = data[1]; // Dane zimowe
       });
     });
   }
@@ -33,9 +42,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(title: Text("Occupancy Visualization")),
         body: Center(
           child:
-              occupancyData == null
-                  ? CircularProgressIndicator() // Wczytywanie
-                  : OccupancyChart(data: occupancyData!),
+              (summerData == null || winterData == null)
+                  ? CircularProgressIndicator() // Wczytywanie danych
+                  : OccupancyChart(
+                    summerData: summerData!,
+                    winterData: winterData!,
+                  ), // Wykres z dwoma zestawami danych
         ),
       ),
     );
