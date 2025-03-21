@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+// Wykres dla danych letnich i zimowych
 class OccupancyChart extends StatelessWidget {
   final List<double> summerData;
   final List<double> winterData;
@@ -15,30 +16,29 @@ class OccupancyChart extends StatelessWidget {
       child: LineChart(
         LineChartData(
           minX: 0,
-          maxX: summerData.length.toDouble() - 1, // Zmieniamy na długość danych
+          maxX: summerData.length.toDouble() - 1,
           minY: [
             summerData.reduce((a, b) => a < b ? a : b),
             winterData.reduce((a, b) => a < b ? a : b),
-          ].reduce((a, b) => a < b ? a : b), // Minimalna wartość z obu zestawów
+          ].reduce((a, b) => a < b ? a : b),
           maxY: [
             summerData.reduce((a, b) => a > b ? a : b),
             winterData.reduce((a, b) => a > b ? a : b),
-          ].reduce(
-            (a, b) => a > b ? a : b,
-          ), // Maksymalna wartość z obu zestawów
+          ].reduce((a, b) => a > b ? a : b),
           gridData: FlGridData(show: true),
           titlesData: FlTitlesData(
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
                 reservedSize: 22,
-                interval: 6, // Co 10 minut (6 × 10 min = 60 minut)
+                interval: 6, // Co 15 minut (15 minut = 1 punkt na wykresie)
                 getTitlesWidget: (value, meta) {
-                  int minutes = value.toInt() * 10;
+                  int minutes = value.toInt() * 15; // Każdy punkt to 15 minut
                   int hours = minutes ~/ 60;
                   int min = minutes % 60;
                   return Text(
                     "${hours.toString().padLeft(2, '0')}:${min.toString().padLeft(2, '0')}",
+                    style: TextStyle(fontSize: 10),
                   );
                 },
               ),
