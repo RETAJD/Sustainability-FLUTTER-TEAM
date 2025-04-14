@@ -14,19 +14,24 @@ Future<List<double>> loadDeviceData(String folderPath) async {
             .where((key) => key.startsWith(folderPath) && key.endsWith('.csv'))
             .toList();
 
+    if (csvFiles.isEmpty) {
+      print("Brak plików CSV w folderze: $folderPath");
+      return deviceData; // Zwrócenie pustej listy
+    }
+
     print("Znalezione pliki CSV:");
-    csvFiles.forEach((f) => print(" - $f"));
+    csvFiles.forEach((file) {
+      print(file); // Logowanie znalezionych plików
+    });
 
+    // Ładowanie danych z plików CSV
     for (var path in csvFiles) {
-      print("Ładowanie pliku: $path");
-
       final fileContent = await rootBundle.loadString(path);
       final rows = const CsvToListConverter(eol: '\n').convert(fileContent);
 
       for (var row in rows) {
         if (row.isNotEmpty) {
           var val = row[0];
-
           if (val is double) {
             deviceData.add(val);
           } else if (val is int) {
@@ -35,8 +40,6 @@ Future<List<double>> loadDeviceData(String folderPath) async {
             final parsed = double.tryParse(val.trim());
             if (parsed != null) {
               deviceData.add(parsed);
-            } else {
-              print("Nie można sparsować: $val");
             }
           }
         }

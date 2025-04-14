@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sustainability_challenge/screens/screen_occupancy.dart';
-
-//import 'widgets/plugs_chart.dart'; // Przykładowy plik do obsługi wykresów dla "Plugs"
-//import 'widgets/smart_meter_chart.dart'; // Przykładowy plik do obsługi wykresów dla "Smart Meter"
+import 'package:sustainability_challenge/screens/plugs_screen.dart'; // Importujemy ekran dla urządzeń
+import 'package:sustainability_challenge/screens/screen_occupancy.dart'; // Importujemy ekran Occupancy
 
 void main() {
   runApp(MyApp());
@@ -27,7 +25,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Eco-Friendly App"),
-        backgroundColor: Colors.green.shade700, // Kolor ekologiczny
+        backgroundColor: Colors.green.shade700,
       ),
       body: Center(
         child: Column(
@@ -39,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.green.shade800, // Zielony kolor
+                color: Colors.green.shade800,
               ),
             ),
             SizedBox(height: 50),
@@ -52,10 +50,10 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green.shade500, // Kolor przycisku
+                backgroundColor: Colors.green.shade500,
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30), // Zaokrąglone rogi
+                  borderRadius: BorderRadius.circular(30),
                 ),
                 elevation: 5,
               ),
@@ -70,11 +68,13 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => OccupancyScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => PlugsScreen(),
+                  ), // Przechodzimy do ekranu PlugsScreen
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue.shade400, // Kolor przycisku
+                backgroundColor: Colors.blue.shade400,
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
@@ -86,17 +86,20 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
+
             SizedBox(height: 20),
-            // Przycisk Smart Meter
+            // Przycisk Plugs
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => OccupancyScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => OccupancyScreen(),
+                  ), // Przechodzimy do ekranu PlugsScreen
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.brown.shade300, // Kolor przycisku
+                backgroundColor: Colors.green.shade500,
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
