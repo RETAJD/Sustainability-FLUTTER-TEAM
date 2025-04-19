@@ -7,7 +7,7 @@ app = FastAPI()
 # Dodaj middleware CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:56491", "http://127.0.0.1:56491"],  # Dodaj domeny, z których chcesz pozwolić na dostęp
+    allow_origins=["*"],  # Dodaj domeny, z których chcesz pozwolić na dostęp
     allow_credentials=True,
     allow_methods=["*"],  # Może być bardziej restrykcyjnie (np. tylko GET, POST)
     allow_headers=["*"],  # Może być bardziej restrykcyjnie (np. tylko niektóre nagłówki)
