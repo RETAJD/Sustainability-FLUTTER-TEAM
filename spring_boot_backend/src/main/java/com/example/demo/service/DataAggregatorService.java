@@ -1,14 +1,17 @@
 package com.example.demo.service;
 
-import com.opencsv.CSVReader;
-import org.springframework.stereotype.Service;
-
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.WeekFields;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.opencsv.CSVReader;
 
 @Service
 public class DataAggregatorService {
@@ -20,7 +23,7 @@ public class DataAggregatorService {
                 new InputStreamReader(getClass().getResourceAsStream("/01_summer.csv")))) {
 
             String[] headers = reader.readNext(); // first row = times
-            String[] row;
+    String[] row;
 
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.ENGLISH);
 
@@ -37,14 +40,15 @@ public class DataAggregatorService {
 
         // Group by year+week and average
         return flatData.stream().collect(Collectors.groupingBy(
-    	 dp -> dp.date.toString(), // Format: yyyy-MM-dd
-    	 Collectors.averagingInt(dp -> dp.value)
-	));
+                dp -> dp.date.toString(), // Format: yyyy-MM-dd
+                Collectors.averagingInt(dp -> dp.value)
+        ));
 
     }
 
     // Helper class
     static class DataPoint {
+
         LocalDate date;
         String time;
         int value;
