@@ -33,7 +33,7 @@ class _OccupancyScreenState extends State<OccupancyScreenNew> {
       String endpoint = _getEndpointForDate(selectedDate);
       final response = await http.get(
         Uri.parse(
-          'http://127.0.0.1:8000/occupancy/01/$endpoint?interval=$selectedInterval',
+          'http://localhost:8080/occupancy/01/$endpoint?interval=$selectedInterval',
         ),
       );
 

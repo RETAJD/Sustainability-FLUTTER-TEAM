@@ -96,11 +96,11 @@ class _SpecificPowerChartState extends State<SpecificPowerChart> {
     final formattedDate = DateFormat('yyyy-MM-dd').format(date);
     final interval = '15';
     final url =
-        'http://localhost:8000/smartmeter/powerallphases?interval=$interval';
+        'http://localhost:8080/smartmeter/powerallphases?interval=$interval';
 
     try {
       final response = await http.get(Uri.parse(url));
-
+      print(response.statusCode);
       if (response.statusCode == 200) {
         try {
           final List<dynamic> decodedBody = json.decode(response.body);
@@ -130,7 +130,7 @@ class _SpecificPowerChartState extends State<SpecificPowerChart> {
       }
     } catch (e) {
       setState(() {
-        error = 'Connection error: $e';
+        error = '$e';
       });
     } finally {
       setState(() {

@@ -36,7 +36,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
         devices.map(
           (deviceId) => http.get(
             Uri.parse(
-              'http://127.0.0.1:8000/plugs/01/$deviceId?interval=$selectedInterval',
+              'http://localhost:8080/plugs/01/$deviceId?interval=$selectedInterval',
             ),
           ),
         ),

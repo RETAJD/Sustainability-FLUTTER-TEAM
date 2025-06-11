@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.List;
-
+@CrossOrigin(origins = "*") 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/occupancy/01")
 public class StatsController {
 
     private final DataAggregatorService service;
@@ -16,9 +16,9 @@ public class StatsController {
         this.service = service;
     }
 
-    @GetMapping("/averages")
-    public Map<String, List<Map<String, Object>>> getAverages(@RequestParam String season) {
-        return service.aggregateDataEvery15MinutesBySeason(season);
+    @GetMapping("/{season}")
+    public List<Map<String, Object>> getAverages(@PathVariable String season, @RequestParam int interval) {
+        return service.aggregateDataEvery15MinutesBySeason(season, interval);
     }
 
 }

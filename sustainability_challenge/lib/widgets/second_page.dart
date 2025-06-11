@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-const String _baseUrlPlugs = 'http://127.0.0.1:8000/plugs/01/';
-const String _baseUrlSmartMeter = 'http://localhost:8000/smartmeter';
+const String _baseUrlPlugs = 'http://localhost:8080/plugs/01/';
+const String _baseUrlSmartMeter = 'http://localhost:8080/smartmeter';
 
 class DevicesScreenSecond extends StatefulWidget {
   @override

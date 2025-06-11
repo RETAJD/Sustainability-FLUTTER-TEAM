@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+@CrossOrigin(origins = "*") 
 @RestController
-@RequestMapping("/api/sm")
+@RequestMapping("/smartmeter")
 public class SmController {
 
     private final SmDataService smDataService;
@@ -15,8 +16,8 @@ public class SmController {
         this.smDataService = smDataService;
     }
 
-    @GetMapping
-    public List<Map<String, Object>> getData() {
-        return smDataService.getAggregatedDataForSm();
+    @GetMapping("/{column}")
+    public List<Map<String, Object>> getData(@PathVariable String column, @RequestParam int interval) {
+        return smDataService.getAggregatedDataForSm(column, interval);
     }
 }

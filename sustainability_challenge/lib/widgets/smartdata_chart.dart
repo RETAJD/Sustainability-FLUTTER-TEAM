@@ -60,7 +60,7 @@ class _SmartMeterScreenState extends State<SmartMeterScreen> {
 
       for (var key in DATA_DESCRIPTIONS.keys) {
         final url =
-            'http://localhost:8000/smartmeter/$key?interval=$selectedInterval';
+            'http://localhost:8080/smartmeter/$key?interval=$selectedInterval';
         final response = await http.get(Uri.parse(url));
 
         print('Response status for $key: ${response.statusCode}');

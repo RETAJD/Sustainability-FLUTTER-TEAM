@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
+@CrossOrigin(origins = "*") 
 @RestController
-@RequestMapping("/api/plugs")
+@RequestMapping("plugs/01")
 public class PlugController {
 
     private final PlugDataService plugDataService;
@@ -17,7 +17,7 @@ public class PlugController {
     }
 
     @GetMapping("/{deviceId}")
-    public List<Map<String, Object>> getPlugData(@PathVariable String deviceId) {
-        return plugDataService.getAggregatedDataForDevice(deviceId);
+    public List<Map<String, Object>> getPlugData(@PathVariable String deviceId, @RequestParam int interval) {
+        return plugDataService.getAggregatedDataForDevice(deviceId, interval);
     }
 }
