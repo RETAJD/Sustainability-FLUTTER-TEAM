@@ -64,31 +64,6 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-     - assets/data_eth/occupancy/01_occupancy_csv/
-    # - assets/data_eth/occupancy/02_occupancy_csv/
-  #   - assets/data_eth/occupancy/03_occupancy_csv/
-  #   - assets/data_eth/occupancy/04_occupancy_csv/
-  #   - assets/data_eth/occupancy/05_occupancy_csv/
-     - assets/data_eth/plugs/01_plugs_csv/
-     - assets/data_eth/plugs/01_plugs_csv/01/
-     - assets/data_eth/plugs/01_plugs_csv/02/
-     - assets/data_eth/plugs/01_plugs_csv/03/
-     - assets/data_eth/plugs/01_plugs_csv/04/
-     - assets/data_eth/plugs/01_plugs_csv/05/
-     - assets/data_eth/plugs/01_plugs_csv/06/
-     - assets/data_eth/plugs/01_plugs_csv/07/
-   #  - assets/data_eth/plugs/02_plugs_csv/
-   #  - assets/data_eth/plugs/03_plugs_csv/
-   #  - assets/data_eth/plugs/04_plugs_csv/
-   #  - assets/data_eth/plugs/05_plugs_csv/
-   # - assets/data_eth/plugs/06_plugs_csv/
-    # - assets/data_eth/sm/01_sm_csv/
-   #  - assets/data_eth/sm/02_sm_csv/
-   #  - assets/data_eth/sm/03_sm_csv/
-   #  - assets/data_eth/sm/04_sm_csv/
-   #  - assets/data_eth/sm/05_sm_csv/
-   #  - assets/data_eth/sm/06_sm_csv/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
