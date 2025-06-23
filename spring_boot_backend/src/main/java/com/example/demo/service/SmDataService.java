@@ -1,11 +1,12 @@
 package com.example.demo.service;
 
-import org.springframework.stereotype.Service;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.nio.file.Files;
+import java.io.InputStreamReader;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class SmDataService {
 
-    private static final String BASE_FOLDER = "/01_sm_csv/";
+    private static final String BASE_FOLDER = "classpath:/01_sm_csv/";
 
     private static final Map<String, Integer> columnIndexMap = Map.ofEntries(
         Map.entry("powerallphases", 0),
@@ -58,31 +59,44 @@ public class SmDataService {
         try {
             int columnIndex = columnIndexMap.getOrDefault(column, 0);
             String description = columnDescriptions.getOrDefault(column, column);
-            File folder = new File(getClass().getResource(BASE_FOLDER).toURI());
-            File[] files = folder.listFiles((dir, name) -> name.endsWith(".csv"));
+            // File folder = new File(getClass().getResource(BASE_FOLDER).toURI());
+            // File[] files = folder.listFiles((dir, name) -> name.endsWith(".csv"));
 
-            if (files == null) return Collections.emptyList();
+            // if (files == null) return Collections.emptyList();
 
-            Arrays.sort(files);
+            // Arrays.sort(files);
 
-            return Arrays.stream(files)
+            // return Arrays.stream(files)
+            //     .parallel()
+            //     .map(file -> processFile(file, columnIndex, interval, column, description))
+            //     .filter(Objects::nonNull)
+            //     .collect(Collectors.toList());
+            
+            PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+            Resource[] resources = resolver.getResources(BASE_FOLDER + "*.csv");
+
+            Arrays.sort(resources, Comparator.comparing(Resource::getFilename));
+
+            return Arrays.stream(resources)
                 .parallel()
-                .map(file -> processFile(file, columnIndex, interval, column, description))
+                .map(resource -> processFile(resource, columnIndex, interval, column, description))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-
         } catch (Exception e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
     }
 
-    private Map<String, Object> processFile(File file, int columnIndex, int interval, String column, String description) {
+    // private Map<String, Object> processFile(File file, int columnIndex, int interval, String column, String description) {
+    private Map<String, Object> processFile(Resource resource, int columnIndex, int interval, String column, String description) {
         try {
-            String date = file.getName().replace(".csv", "");
+            // String date = file.getName().replace(".csv", "");
+            String date = Objects.requireNonNull(resource.getFilename()).replace(".csv", "");
             List<Double> values = new ArrayList<>();
 
-            try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {
+            // try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     if (!line.isEmpty()) {
