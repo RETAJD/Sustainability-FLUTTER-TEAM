@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:sustainability_challenge/screens/plugs_screen.dart';
-import 'package:sustainability_challenge/screens/screen_occupancy.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:sustainability_challenge/widgets/occupancy_chart_days.dart';
 import 'package:sustainability_challenge/widgets/plugs_chart_days.dart';
